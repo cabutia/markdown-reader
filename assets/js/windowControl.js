@@ -1,6 +1,7 @@
 // Dependencies
-let remote = require('electron').remote;
-let dialog = remote.require('dialog');
+let remote = require('electron').remote
+let dialog = remote.dialog
+let fs     = remote.require('fs')
 
 // Declarations
 let closeButton = document.querySelector('#window-close');
@@ -41,7 +42,10 @@ generalFunctions()
 let openFileButton = document.querySelector('#action-open-file');
 
 openFileButton.addEventListener('click', () => {
-    dialog.showOpenDialog(filename => {
-        console.log(filename);
+    dialog.showOpenDialog((file) => {
+      if (typeof file == 'object') {
+        console.log('It\'s an object!');
+      }
+      console.log(typeof file);
     })
 })

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # electron-quick-start
 
 **Clone and run for a quick way to see Electron in action.**
@@ -43,3 +44,7 @@ Note: If you're using Linux Bash for Windows, [see this guide](https://www.howto
 ## License
 
 [CC0 1.0 (Public Domain)](LICENSE.md)
+=======
+# markdown-syntax-viewer
+Multi-platform markdown language reader. Like a PDF reader, but with markdown
+>>>>>>> 42689df428aa82975e733a05f9a500f2e0259e9f

@@ -1,5 +1,6 @@
 // Dependencies
 let remote = require('electron').remote;
+let dialog = remote.require('dialog');
 
 // Declarations
 let closeButton = document.querySelector('#window-close');
@@ -36,4 +37,11 @@ dropdown('.dropdown')
 generalKeyBindings(window)
 generalFunctions()
 
-let dialog = remote.require('dialog')
+// Action declarations
+let openFileButton = document.querySelector('#action-open-file');
+
+openFileButton.addEventListener('click', () => {
+    dialog.showOpenDialog(filename => {
+        console.log(filename);
+    })
+})

@@ -1,46 +1,65 @@
-// Dependencies
-let remote = require('electron').remote;
-let dialog = remote.require('dialog');
-
-// Declarations
-let closeButton = document.querySelector('#window-close');
-let restoreButton = document.querySelector('#window-restore');
-let maximizeButton = document.querySelector('#window-maximize');
-let minimizeButton = document.querySelector('#window-minimize');
-let mainWindow = remote.getCurrentWindow();
-
 // Initialization
 hideInline(restoreButton)
 
 // Events
 closeButton.addEventListener('click', (e) => {
-    mainWindow.close();
+    mainWindow.close()
 })
 
 minimizeButton.addEventListener('click', (e) => {
-    mainWindow.minimize();
+    mainWindow.minimize()
 })
 
 maximizeButton.addEventListener('click', (e) => {
     hideInline(maximizeButton)
     showInline(restoreButton)
-    mainWindow.maximize();
+    mainWindow.maximize()
 })
 
 restoreButton.addEventListener('click', (e) => {
     hideInline(restoreButton)
     showInline(maximizeButton)
-    mainWindow.restore();
+    mainWindow.restore()
 })
 
 dropdown('.dropdown')
 generalFunctions()
 
 // Action declarations
-let openFileButton = document.querySelector('#action-open-file');
+editorInput.addEventListener('input', (e) => {
+    if (!current.mustSave) {
+        current.mustSave = true
+    }
+})
 
-openFileButton.addEventListener('click', () => {
-    dialog.showOpenDialog(filename => {
-        console.log(filename);
-    })
+newFileButton.addEventListener('click', e => {
+    hideToolbarLists()
+    current.file = true
+    current.newFile = true;
+    current.filePath = app.getAppPath()
+    editorInput.innerHTML = '';
+})
+
+openFileButton.addEventListener('click', e => {
+    hideToolbarLists()
+    openFile()
+})
+
+saveFileButton.addEventListener('click', e => {
+    hideToolbarLists()
+    saveFile()
+})
+
+editorWrapper.addEventListener('click', (e) => {
+    hideToolbarLists()
+})
+
+
+// Context menu
+editorWrapper.addEventListener('contextmenu', e => {
+    e.preventDefault()
+    console.log('Position', e.offsetX + ':' + e.offsetY);
+    ctxMenu.style.left = (e.offsetX - 150) + 'px';
+    ctxMenu.style.top = e.offsetY + 'px';
+    ctxMenu.style.transform = 'scale(1)';
 })

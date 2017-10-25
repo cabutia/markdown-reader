@@ -6,6 +6,7 @@ body, html
     margin: 0;
     padding: 0;
     background-color: #222f2e;
+    overflow: hidden;
 }
 
 footer
@@ -13,7 +14,7 @@ footer
     position: fixed;
     bottom: 0;
     left: 0;
-    width: 100vw;
+    width: 100%;
     height: 25px;
     line-height: 25px;
     font-size: 10pt;
@@ -29,7 +30,7 @@ nav.frame
     top: 0;
     left: 0;
     z-index: 100;
-    width: 100vw;
+    width: 100%;
     height: 30px;
     background-color: #222f2e;
 
@@ -98,7 +99,7 @@ nav.frame ul.window-controls-left li:hover
 
 .content
 {
-    width: 100vw;
+    width: 100%;
     height: calc(100vh - 85px);
     margin-top: 60px;
 }
@@ -108,15 +109,15 @@ nav.toolbar
     position: fixed;
     top: 30px;
     left: 0;
-    width: 100vw;
+    width: 100%;
     height: 30px;
-    box-shadow: 0px 1px 7px rgba(0,0,0,.2);
+    z-index: 99;
     padding: 0 !important;
 }
 
 nav.toolbar ul
 {
-    width: 100vw;
+    width: 100%;
     height: 30px;
     list-style: none;
     margin: 0 !important;
@@ -139,15 +140,26 @@ nav.toolbar ul li:not(.list-item):hover
     background-color: #303e3d;
 }
 
+nav.toolbar.format
+{
+    top: 60px;
+    z-index: 0;
+    box-shadow: 0px 3px 7px rgba(0,0,0,.17);
+}
+
+nav.toolbar.format ul li
+{
+    cursor: pointer;
+}
+
 li.dropdown
 {
     position: relative;
 }
 li.dropdown ul.dropdown-list
 {
-    left: 0;
     top: 100%;
-    max-width: 30vw;
+    min-width: 300px;
     height: auto;
     position: absolute;
     background-color: #303e3d;
@@ -156,7 +168,7 @@ li.dropdown ul.dropdown-list
 
 li.dropdown ul.dropdown-list li.list-item
 {
-    width: auto;
+    width: 100%;
     display: block;
 }
 
@@ -167,3 +179,11 @@ li.dropdown ul.dropdown-list li.list-item:hover
 {
     background-color: #394544
 }
+
+li.dropdown.anchor-right
+{
+    float: right;
+}
+
+ul.dropdown-list.expand-left { right: 0 }
+ul.dropdown-list.expand-right { left: 0 }

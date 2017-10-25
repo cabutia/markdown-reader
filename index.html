@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <title>Hello World!</title>
 
-    <script src="./assets/js/functions.js"></script>
+    <!-- <script src="./assets/js/functions.js"></script> -->
 
     <link rel="stylesheet" href="./assets/css/main.css">
-    <link rel="stylesheet" href="./assets/css/custom.css">
+    <link rel="stylesheet" href="./assets/css/window.css">
+    <link rel="stylesheet" href="./assets/css/editor.css">
     <link rel="stylesheet" href="./assets/fa/css/font-awesome.min.css">
 </head>
 <body>
@@ -30,19 +31,50 @@
             <ul>
                 <li class="dropdown" data-toggles="file-ul">
                     File
-                    <ul class="dropdown-list" id="file-ul">
-                        <li class="list-item">New file</li>
+                    <ul class="dropdown-list expand-right" id="file-ul">
+                        <li class="list-item" id="action-new-file">New file</li>
                         <li class="list-item" id="action-open-file">Open file</li>
-                        <li class="list-item">Save</li>
+                        <li class="list-item" id="action-save-file">Save</li>
                         <li class="list-item">Save as</li>
                     </ul>
                 </li>
                 <li>Edit</li>
+                <li class="dropdown" data-toggles="customize-ul">
+                    Customize
+                    <ul class="dropdown-list expand-right" id="customize-ul">
+                        <li class="list-item">Theme</li>
+                        <li class="list-item">Editor</li>
+                    </ul>
+                </li>
+                <li class="dropdown anchor-right" data-toggles="devtools">
+                    Developer tools
+                    <ul class="dropdown-list expand-left" id="devtools">
+                        <li class="list-item" id="devaction-log-current">Log current object</li>
+                        <li class="list-item" id="devaction-log-content">Log editor content</li>
+                        <li class="list-item" id="devaction-log-apppath">Log app path</li>
+                        <li class="list-item" id="devaction-log-apptest">App test</li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <nav class="toolbar format">
+            <ul>
+                <li id="action-editor-set-header1">Header 1</li>
+                <li id="action-editor-set-header2">Header 2</li>
             </ul>
         </nav>
 
-        <div class="editor">
-
+        <div class="editor-wrapper mousetrap" id="editor-wrapper">
+            <div class="context-menu">
+                <ul class="context-menu-list">
+                    <li class="context-list-item">Item</li>
+                    <li class="context-list-item">Item</li>
+                    <li class="context-list-item">Item</li>
+                    <li class="context-list-item">Item</li>
+                </ul>
+            </div>
+            <div class="editor-input" contenteditable="true">
+            </div>
         </div>
     </div>
 
@@ -53,8 +85,14 @@
         and Electron <script>document.write(process.versions.electron)</script>.
     </footer>
 
-    <script>
-        require('./assets/js/windowControl.js')
-    </script>
+    <!-- <script src="./assets/js/windowControl.js"></script> -->
+    <!-- <script src="./assets/js/devTools.js"></script> -->
+
+    <script src="./assets/js/declarations.js"></script>
+    <script src="./assets/js/functions.js"></script>
+    <script src="./assets/js/windowControl.js"></script>
+    <script src="./assets/js/devTools.js"></script>
+    <script src="./assets/js/shortcuts.js"></script>
+    <script src="./assets/js/editor.js"></script>
 </body>
 </html>

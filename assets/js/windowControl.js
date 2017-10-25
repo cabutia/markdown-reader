@@ -1,7 +1,7 @@
 // Dependencies
 let remote = require('electron').remote
 let dialog = remote.dialog
-let fs     = remote.require('fs')
+let fs     = require('fs')
 
 // Declarations
 let closeButton = document.querySelector('#window-close');
@@ -40,12 +40,26 @@ generalFunctions()
 
 // Action declarations
 let openFileButton = document.querySelector('#action-open-file');
+let editorWrapper = document.querySelector('#editor-wrapper');
 
-openFileButton.addEventListener('click', () => {
-    dialog.showOpenDialog((file) => {
-      if (typeof file == 'object') {
-        console.log('It\'s an object!');
-      }
-      console.log(typeof file);
+openFileButton.addEventListener('click', (e) => {
+    hideToolbarLists();
+
+    dialog.showOpenDialog({
+        filters: [
+            { name: 'Markdown files', extensions: ['md', 'MD'] }
+        ]
+    }, (filePath) => {
+        if (typeof filePath == 'object') {
+            fs.readFile(filePath[0], 'utf-8', (err, file) => {
+                if (err) return console.log(err);
+
+                console.log('There wasn\'t errors', file);
+            })
+        }
     })
+})
+
+editorWrapper.addEventListener('click', (e) => {
+    hideToolbarLists();
 })

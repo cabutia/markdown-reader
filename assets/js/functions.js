@@ -7,6 +7,14 @@ let showInline = (element) => {
     element.style.display = 'inline-block'
 }
 
+let hideToolbarLists = () => {
+    let lists = document.querySelectorAll('.dropdown-list')
+    for (var i = 0; i < lists.length; i++) {
+        let list = lists[i]
+        list.style.display = 'none'
+    }
+}
+
 let dropdown = (elementClass) => {
     let triggers = document.querySelectorAll(elementClass)
 
@@ -18,17 +26,10 @@ let dropdown = (elementClass) => {
         list.style.display = 'none'
 
         trigger.addEventListener('click', (e) => {
+            hideToolbarLists()
             list.style.display = 'block'
             e.stopPropagation();
         })
-    }
-}
-
-let hideToolbarLists = () => {
-    let lists = document.querySelectorAll('.dropdown-list')
-    for (var i = 0; i < lists.length; i++) {
-        let list = lists[i]
-        list.style.display = 'none'
     }
 }
 

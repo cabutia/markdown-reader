@@ -32,18 +32,6 @@ let hideToolbarLists = () => {
     }
 }
 
-let generalKeyBindings = (window) => {
-    window.addEventListener('keyup', (e) => {
-        // Shortcuts
-        e.preventDefault()
-        switch (e.keyCode) {
-            case 27:
-                hideToolbarLists()
-                break;
-        }
-    })
-}
-
 let generalFunctions = () => {
     // Hide when click on toolbar item
     let items = document.querySelectorAll('.list-item')

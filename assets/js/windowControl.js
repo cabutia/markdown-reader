@@ -34,7 +34,6 @@ restoreButton.addEventListener('click', (e) => {
 })
 
 dropdown('.dropdown')
-generalKeyBindings(window)
 generalFunctions()
 
 // Action declarations

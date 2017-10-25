@@ -1,15 +1,3 @@
-// Dependencies
-let remote = require('electron').remote
-let dialog = remote.dialog
-let fs     = require('fs')
-
-// Declarations
-let closeButton = document.querySelector('#window-close');
-let restoreButton = document.querySelector('#window-restore');
-let maximizeButton = document.querySelector('#window-maximize');
-let minimizeButton = document.querySelector('#window-minimize');
-let mainWindow = remote.getCurrentWindow();
-
 // Initialization
 hideInline(restoreButton)
 
@@ -38,11 +26,8 @@ dropdown('.dropdown')
 generalKeyBindings(window)
 generalFunctions()
 
-// Action declarations
-let openFileButton = document.querySelector('#action-open-file');
-let editorWrapper = document.querySelector('#editor-wrapper');
 
-openFileButton.addEventListener('click', (e) => {
+openFileButton.addEventListener('click', e => {
     hideToolbarLists();
 
     dialog.showOpenDialog({
@@ -50,13 +35,22 @@ openFileButton.addEventListener('click', (e) => {
             { name: 'Markdown files', extensions: ['md', 'MD'] }
         ]
     }, (filePath) => {
+        currentFilePath = filePath[0];
         if (typeof filePath == 'object') {
-            fs.readFile(filePath[0], 'utf-8', (err, file) => {
-                if (err) return console.log(err);
-
-                console.log('There wasn\'t errors', file);
+            fs.readFile(filePath[0], 'utf8', (err, file) => {
+                if (err) return console.log(err.message);
+                console.log('There wasn\'t errors');
+                editor.innerHTML = file;
             })
         }
+    })
+})
+
+saveFileButton.addEventListener('click', e => {
+    hideToolbarLists();
+    fs.writeFile(currentFilePath, editor.innerHTML, err => {
+        if (err) return err.message;
+        console.log('Saved!');
     })
 })
 

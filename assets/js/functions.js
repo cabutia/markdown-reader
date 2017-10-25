@@ -37,10 +37,23 @@ let generalKeyBindings = (window) => {
     window.addEventListener('keyup', (e) => {
         // Shortcuts
         e.preventDefault()
-        switch (e.keyCode) {
-            case 27:
-                hideToolbarLists()
-                break;
+
+        // Combinations
+        if (e.ctrlKey) {
+            switch (e.keyCode) {
+                case 83:
+                    fs.writeFile(currentFilePath, editor.innerHTML, err => {
+                        if (err) return err.message;
+                        console.log('Saved!');
+                    })
+                    break;
+            }
+        }else{
+            switch (e.keyCode) {
+                case 27:
+                    hideToolbarLists()
+                    break;
+            }
         }
     })
 }

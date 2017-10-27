@@ -15,6 +15,8 @@
 	overflow-x: hidden;
 	outline: none !important;
 	cursor: text;
+	font-size: 16px;
+	line-height: 1.5;
 	color: #c3d2ad;
 	white-space: pre-line;
 }
@@ -73,17 +75,58 @@
 	background-color: #394544
 }
 
+
+/* SYNTAX */
+.editor-input * { display: inline }
+
 .editor-input h1,
 .editor-input h2,
 .editor-input h3,
 .editor-input h4,
-.editor-input h5
+.editor-input h5,
+.editor-input h6
 {
-	margin: 0;
+	display: inline-block;
+	width: 100%;
+	margin: 24px 0 16px;
+	font-weight: 600;
+	line-height: 1.25;
 }
 
-.editor-input h2
-{
-	padding-bottom: 15px;
-	border-bottom: 1px solid #ccc;
+.editor-input h1 {
+	font-size: 2em;
+	padding-bottom: .3em;
+	border-bottom: 1px solid rgba(255,255,255,.3);
 }
+.editor-input h2 {
+	font-size: 1.5em;
+	padding-bottom: .3em;
+	border-bottom: 1px solid rgba(255,255,255,.3);
+}
+.editor-input h3 {
+	font-size: 1.25em;
+}
+.editor-input h4 {
+	font-size: 1em;
+}
+.editor-input h5 {
+	font-size: 0.875em;
+}
+.editor-input h6 {
+	font-size: 0.875em;
+}
+
+.editor-input p {
+	margin-bottom: 13px;
+}
+
+.editor-input ol {
+	display: block;
+	list-style-type: decimal;
+}
+
+.editor-input ol li{
+	display: list-item;
+}
+
+/* SYNTAX */

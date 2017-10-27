@@ -20,47 +20,6 @@ let hideToolbarLists = () => {
     }
 }
 
-let replaceWithElement = (element, char, string) => {
-    return '<' + element + '>' + string.replace(char,'') + '</' + element + '>' + '<br>';
-}
-
-let isChar = (string, position, char) => {
-    if ( string.charAt(position) === char ) return true
-    return false
-}
-
-let parseReturn = (lineArray) => {
-    let result = '';
-    for (var i = 0; i < lineArray.length; i++) {
-        let k = i + 1;
-        if (lineArray[i] !== "\n"){
-            let line = lineArray[i];
-            let orig = line;
-            line = line.replace(/[\*]{2}(.*)[\*]{2}/g, "<b>$1</b>")
-            line = line.replace(/[__]{2}(.*)[__]{2}/g, "<b>$1</b>")
-            line = line.replace(/\*(.*)\*/g, "<i>$1</i>")
-            line = line.replace(/_(.*)_/g, "<i>$1</i>")
-            line = line.replace(/[#]{6}(.*)/g, "<h6>$1</h6>")
-            line = line.replace(/[#]{5}(.*)/g, "<h5>$1</h5>")
-            line = line.replace(/[#]{4}(.*)/g, "<h4>$1</h4>")
-            line = line.replace(/[#]{3}(.*)/g, "<h3>$1</h3>")
-            line = line.replace(/[#]{2}(.*)/g, "<h2>$1</h2>")
-            line = line.replace(/[#]{1}(.*)/g, "<h1>$1</h1>")
-            line = line.replace(/[~]{2}(.*)[~]{2}/g, "<u>$1</u>")
-            console.log('-===================-');
-            console.log(orig);
-            console.log(line + '<br>');
-            console.log('-===================-');
-            result += line + '<br>'
-        } else if (lineArray[i] == "\n" && lineArray.length >= k && lineArray[k] == "\n"){
-            result += '<br>';
-            i++
-        }
-    }
-    console.log(result);
-    return result;
-}
-
 let dropdown = (elementClass) => {
     let triggers = document.querySelectorAll(elementClass)
 
@@ -102,6 +61,21 @@ let generalFunctions = () => {
     }
 }
 
+
+let parseFile = (div, content) => {
+    let rules = JSON.parse(fs.readFileSync(app.getAppPath() + '/assets/js/regex-formats.json').toString());
+    let newcontent = content;
+    for (var i = 0; i < rules.length; i++) {
+        let rule = rules[i];
+        newcontent = newcontent.replace(new RegExp(rule.regex, 'gim'), rule.result);
+        /*
+            Ni la linea de arriba, ni la de abajo, comienzan con numeros
+            (?!^[0-9]\. *$)\n^[0-9]\. (.*)$\n(?!^[0-9]\. *$)
+        */
+    }
+    div.innerHTML = newcontent
+}
+
 let openFile = () => {
     dialog.showOpenDialog({
         filters: [
@@ -112,10 +86,19 @@ let openFile = () => {
             current.file = true
             current.newFile = false
             current.filePath = filePath[0]
-            let content = fs.readFileSync(filePath[0]).toString().split(/(\r\n|\n|\r)/gm).filter(Boolean)
-            editorInput.innerHTML = parseReturn(content);
+            let content = fs.readFileSync(filePath[0]).toString();
+            console.log(content);
+            parseFile(editorInput, content);
         }
     })
+}
+
+let reOpenFile = () => {
+    if (current.file) {
+        console.log('Reopening',current.filePath);
+        let content = fs.readFileSync(current.filePath).toString().split(/(\r\n|\n|\r)/gm).filter(Boolean)
+        editorInput.innerHTML = parseReturn(content);
+    }
 }
 
 let saveFile = () => {

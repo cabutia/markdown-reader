@@ -3,7 +3,8 @@
 	position: fixed;
 	width: 100%;
 	padding: 5px;
-	height: calc(100% - 85px);
+	height: calc(100% - 115px);
+	top: 90px;
 }
 
 .editor-input
@@ -11,9 +12,16 @@
 	width: 100%;
 	height: 100%;
 	overflow-y: scroll;
+	overflow-x: hidden;
 	outline: none !important;
 	cursor: text;
+	font-size: 16px;
+	line-height: 1.5;
+	color: #c3d2ad;
+	white-space: pre-line;
 }
+
+.editor-input * { cursor: text; }
 
 ::-webkit-scrollbar {
     width: 12px;
@@ -29,3 +37,96 @@
 ::-webkit-scrollbar-thumb:window-inactive {
 	background: #273332;
 }
+
+.context-menu
+{
+	position: absolute;
+	min-width: 300px;
+	min-height: 20px;
+	z-index: 1000;
+	padding: 0;
+	background-color: #303e3d;
+	box-shadow: 0px 1px 7px rgba(0,0,0,.2);
+	transform: scale(0);
+	transition: transform .24s ease;
+	/*display: none;*/
+}
+
+.context-menu ul.context-menu-list
+{
+	width: 100%;
+	padding: 5px;
+	margin: 0;
+	list-style: none;
+}
+
+.context-menu ul.context-menu-list li.context-list-item
+{
+	color: #b0b999;
+	width: 100%;
+	display: block;
+	height: 30px;
+	padding: 0 5px;
+	line-height: 30px;
+}
+
+.context-menu ul.context-menu-list li.context-list-item:hover
+{
+	background-color: #394544
+}
+
+
+/* SYNTAX */
+.editor-input * { display: inline }
+
+.editor-input h1,
+.editor-input h2,
+.editor-input h3,
+.editor-input h4,
+.editor-input h5,
+.editor-input h6
+{
+	display: inline-block;
+	width: 100%;
+	margin: 24px 0 16px;
+	font-weight: 600;
+	line-height: 1.25;
+}
+
+.editor-input h1 {
+	font-size: 2em;
+	padding-bottom: .3em;
+	border-bottom: 1px solid rgba(255,255,255,.3);
+}
+.editor-input h2 {
+	font-size: 1.5em;
+	padding-bottom: .3em;
+	border-bottom: 1px solid rgba(255,255,255,.3);
+}
+.editor-input h3 {
+	font-size: 1.25em;
+}
+.editor-input h4 {
+	font-size: 1em;
+}
+.editor-input h5 {
+	font-size: 0.875em;
+}
+.editor-input h6 {
+	font-size: 0.875em;
+}
+
+.editor-input p {
+	margin-bottom: 13px;
+}
+
+.editor-input ol {
+	display: block;
+	list-style-type: decimal;
+}
+
+.editor-input ol li{
+	display: list-item;
+}
+
+/* SYNTAX */

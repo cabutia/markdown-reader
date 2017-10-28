@@ -1,0 +1,67 @@
+[
+    {
+        "regex":  "[\\*]{2}(.*)[\\*\\*]{2}",
+        "result": "<strong class='bold'>$1</strong>",
+        "_comment": "Bold: **word**"
+    }, {
+        "regex":  "[_]{2}(.*)[_]{2}",
+        "result": "<strong class='bold'>$1</strong>",
+        "_comment": "Bold: __word__"
+    }, {
+        "regex":  "[\\*]{1}(.*)[\\*]{1}",
+        "result": "<em class='italic'>$1</em>",
+        "_comment": "Italic: *word*"
+    }, {
+        "regex":  "[_](.*)[_]",
+        "result": "<em class='italic'>$1</em>",
+        "_comment": "Italic: _word_"
+    }, {
+        "regex":  "[~]{2}(.*)[~]{2}",
+        "result": "<del class='strikethrough'>$1</del>",
+        "_comment": "Strikethrough: ~~word~~"
+    }, {
+        "regex":  "^[#]{6}(.*)\n",
+        "result": "<h6 class='header6'>$1</h6>",
+        "_comment": "H6: ######word"
+    }, {
+        "regex":  "^[#]{5}(.*)\n",
+        "result": "<h5 class='header5'>$1</h5>",
+        "_comment": "H5: #####word"
+    }, {
+        "regex":  "^[#]{4}(.*)\n",
+        "result": "<h4 class='header4'>$1</h4>",
+        "_comment": "H4: ####word"
+    }, {
+        "regex":  "^[#]{3}(.*)\n",
+        "result": "<h3 class='header3'>$1</h3>",
+        "_comment": "H3: ###word"
+    }, {
+        "regex":  "^[#]{2}(.*)\n",
+        "result": "<h2 class='header2'>$1</h2>",
+        "_comment": "H2: ##word"
+    }, {
+        "regex":  "^[#]{1}(.*)\n",
+        "result": "<h1 class='header1'>$1</h1>",
+        "_comment": "H1: #word"
+    }, {
+        "regex":  "\n(?!^[0-9]. (.*)$)\n^[0-9]. (.*)$",
+        "result": "\n<ol><li>$2</li>",
+        "_comment": "Ordered list begin"
+    }, {
+        "regex":  "^[0-9]. (.*)$\n(?!^[0-9]. (.*)$|^[⋅]{2}[0-9]. (.*)$)",
+        "result": "<li>$1</li></ol>\n",
+        "_comment": "Ordered list end"
+    }, {
+        "regex":  "^[0-9]\\. (.*)$\n^[0-9]\\. (.*)$\n^[0-9]\\. (.*)$",
+        "result": "<li>$2</li>",
+        "_comment": "Ordered list body"
+    }, {
+        "regex": "(?!^[0-9]\\. (.*)$)\n^[0-9]\\. (.*)$\n(?!^[0-9]\\. (.*)$)",
+        "result": "<ol><li>$2</li></ol>",
+        "_comment": "Unique ordered list"
+    }, {
+        "regex": "^[⋅]{2}[*|+|-](.*)$",
+        "result": "<li>$2</li>",
+        "_comment": "Unique ordered list"
+    }
+]

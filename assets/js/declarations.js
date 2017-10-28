@@ -3,7 +3,9 @@ let remote = require('electron').remote
 let dialog = remote.dialog
 let fs     = require('fs')
 let Mousetrap = require('mousetrap')
-let app = remote.require('electron').app;
+let app = remote.require('electron').app
+let storage = require('json-storage')
+let storagePath = app.getAppPath() + '/storage'
 
 // Window elements
 let closeButton = document.querySelector('#window-close')
@@ -20,8 +22,8 @@ let saveFileButton = document.querySelector('#action-save-file')
 // Editor elements
 let editorWrapper = document.querySelector('#editor-wrapper')
 let editorInput = editorWrapper.querySelector('.editor-input')
-let setH1button = document.querySelector('#action-editor-set-header1');
-let setH2button = document.querySelector('#action-editor-set-header2');
+let setH1button = document.querySelector('#action-editor-set-header1')
+let setH2button = document.querySelector('#action-editor-set-header2')
 
 // Contextual menu
 let ctxMenu = editorWrapper.querySelector('.context-menu')
@@ -31,5 +33,9 @@ let current = {
     file: false,
     newFile: false,
     mustSave: false,
-    filePath: ''
+    filePath: '',
+    content: ''
 }
+
+// Initializations
+storage.init()

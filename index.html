@@ -34,6 +34,15 @@
                         <li class="list-item" id="action-open-file">Open file</li>
                         <li class="list-item" id="action-save-file">Save</li>
                         <li class="list-item">Save as</li>
+                        <li class="list-divider"></li>
+                        <li class="sublist">
+                            <ul id="recent-files">
+                                <li class="list-header">Recent files</li>
+                                <li class="list-item">There's no recent files</li>
+                            </ul>
+                        </li>
+                        <li class="list-divider"></li>
+                        <li class="list-item">Exit</li>
                     </ul>
                 </li>
                 <li>Edit</li>
@@ -65,11 +74,10 @@
 
         <div class="editor-wrapper mousetrap" id="editor-wrapper">
             <div class="context-menu">
-                <ul class="context-menu-list">
-                    <li class="context-list-item">Item</li>
-                    <li class="context-list-item">Item</li>
-                    <li class="context-list-item">Item</li>
-                    <li class="context-list-item">Item</li>
+                <ul class="context-menu-list with-header">
+                    <li class="context-list-header" id="recentFiles">Recent files</li>
+                </ul>
+                <ul class="context-menu-list with-header">
                 </ul>
             </div>
             <div class="editor-input" contenteditable="true">
@@ -88,8 +96,6 @@
         and Electron <script>document.write(process.versions.electron)</script>.
     </footer>
 
-    <!-- <script src="./assets/js/windowControl.js"></script> -->
-    <!-- <script src="./assets/js/devTools.js"></script> -->
 
     <script src="./assets/js/declarations.js"></script>
     <script src="./assets/js/functions.js"></script>

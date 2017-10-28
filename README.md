@@ -1,2 +1,1 @@
-# Markdown Reader
-Multi-platform markdown language reader. Like a PDF reader, but with markdown 2
+<h1 class="header1"> Markdown Reader</h1>Multi-platform markdown language reader. Like a PDF reader, but with markdown 3&nbsp;

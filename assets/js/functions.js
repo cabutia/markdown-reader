@@ -99,11 +99,45 @@ let openFile = () => {
             current.file = true
             current.newFile = false
             current.filePath = filePath[0]
-            let content = fs.readFileSync(filePath[0]).toString();
-            console.log(content);
-            parseFile(editorInput, content);
+            current.content = fs.readFileSync(filePath[0]).toString();
+            console.log(current.content);
+            parseFile(editorInput, current.content);
+
+            let recentFiles = storage.getRecentFiles();
+            let mustBeAdded = true;
+            console.log('Recent files', recentFiles);
+            for (var i = 0; i < recentFiles.length; i++) {
+                if (current.filePath == recentFiles[i].path) {
+                    mustBeAdded = false;
+                }
+            }
+
+            if (mustBeAdded) {
+                storage.addRecentFile(current.filePath)
+            }
         }
     })
+}
+
+let checkForSave = () => {
+    if (current.mustSave) {
+        console.log('Debe guardar?', current.mustSave);
+        if(confirm('Hay cambios no guardados.\nContinuar?')) return true;
+        return false;
+    }
+    return true;
+}
+
+let openRecent = (path) => {
+    if (checkForSave()) {
+        current.file = true
+        current.newFile = false
+        current.filePath = path
+        current.mustSave = false
+        current.content = fs.readFileSync(path).toString();
+        console.log(current.content);
+        parseFile(editorInput, current.content);
+    }
 }
 
 let reOpenFile = () => {
@@ -124,7 +158,7 @@ let saveFile = () => {
             console.log('Saved!');
         })
     }else{
-        let newFile = dialog.showSaveDialog({ defaultPath: current.filePath, })
+        let newFile = dialog.showSaveDialog({ defaultPath: current.filePath })
         current.file = true
         current.filePath = newFile
         current.mustSave = false
@@ -136,3 +170,30 @@ let saveFile = () => {
         })
     }
 }
+
+
+let appendRecentFiles = (items) => {
+    let header = document.querySelector('#recentFiles')
+    let container = header.parentNode
+    header = document.querySelector('#recentFiles + ul')
+
+    if (items.length !== 0) {
+        for (var i = 0; i < items.length; i++) {
+            items[i]
+            let recentFile = document.createElement('li')
+            recentFile.classList = 'context-list-item'
+            recentFile.innerHTML = items[i].name
+            recentFile.setAttribute('onclick', 'openRecent("' + items[i].path + '")')
+            container.insertBefore(recentFile, header)
+        }
+    }else{
+        let item = document.createElement('li')
+        item.classList = 'context-list-item'
+        item.innerHTML = 'No hay archivos recientes.'
+        container.insertBefore(item, header)
+    }
+
+
+}
+
+appendRecentFiles(storage.getRecentFiles())

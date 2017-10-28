@@ -62,3 +62,5 @@ editorWrapper.addEventListener('contextmenu', e => {
     ctxMenu.style.top = e.offsetY + 'px';
     ctxMenu.style.transform = 'scale(1)';
 })
+
+storage.getRecentFiles();

@@ -172,6 +172,40 @@ li.dropdown ul.dropdown-list li.list-item
     display: block;
 }
 
+li.dropdown ul.dropdown-list li.sublist
+{
+    width: 100%;
+    padding: 0 16px;
+    height: auto;
+}
+
+li.dropdown ul.dropdown-list li.sublist ul
+{
+    padding: 0 !important;
+    height: auto;
+}
+
+li.dropdown ul.dropdown-list li.sublist ul > .list-header
+{
+    padding: 0;
+    color: rgba(202, 212, 162, 0.56);
+}
+
+li.dropdown ul.dropdown-list li.sublist ul li.list-item
+{
+    /*display: block;
+    width: 100%;*/
+}
+
+li.list-divider
+{
+    width: 100%;
+    height: 1px !important;
+    margin: 0;
+    padding: 0;
+    background: #ccc;
+}
+
 li.dropdown ul.dropdown-list li.list-item:first-child { margin-top: 10px; }
 li.dropdown ul.dropdown-list li.list-item:last-child { margin-bottom: 10px; }
 

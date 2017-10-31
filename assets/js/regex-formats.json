@@ -43,25 +43,5 @@
         "regex":  "^[#]{1}(.*)\n",
         "result": "<h1 class='header1'>$1</h1>",
         "_comment": "H1: #word"
-    }, {
-        "regex":  "\n(?!^[0-9]. (.*)$)\n^[0-9]. (.*)$",
-        "result": "\n<ol><li>$2</li>",
-        "_comment": "Ordered list begin"
-    }, {
-        "regex":  "^[0-9]. (.*)$\n(?!^[0-9]. (.*)$|^[⋅]{2}[0-9]. (.*)$)",
-        "result": "<li>$1</li></ol>\n",
-        "_comment": "Ordered list end"
-    }, {
-        "regex":  "^[0-9]\\. (.*)$\n^[0-9]\\. (.*)$\n^[0-9]\\. (.*)$",
-        "result": "<li>$2</li>",
-        "_comment": "Ordered list body"
-    }, {
-        "regex": "(?!^[0-9]\\. (.*)$)\n^[0-9]\\. (.*)$\n(?!^[0-9]\\. (.*)$)",
-        "result": "<ol><li>$2</li></ol>",
-        "_comment": "Unique ordered list"
-    }, {
-        "regex": "^[⋅]{2}[*|+|-](.*)$",
-        "result": "<li>$2</li>",
-        "_comment": "Unique ordered list"
     }
 ]

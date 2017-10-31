@@ -63,4 +63,4 @@ editorWrapper.addEventListener('contextmenu', e => {
     ctxMenu.style.transform = 'scale(1)';
 })
 
-storage.getRecentFiles();
+// storage.getRecentFiles();

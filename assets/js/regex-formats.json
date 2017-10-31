@@ -3,45 +3,143 @@
         "regex":  "[\\*]{2}(.*)[\\*\\*]{2}",
         "result": "<strong class='bold'>$1</strong>",
         "_comment": "Bold: **word**"
-    }, {
+    },
+    {
         "regex":  "[_]{2}(.*)[_]{2}",
         "result": "<strong class='bold'>$1</strong>",
         "_comment": "Bold: __word__"
-    }, {
+    },
+    {
         "regex":  "[\\*]{1}(.*)[\\*]{1}",
         "result": "<em class='italic'>$1</em>",
         "_comment": "Italic: *word*"
-    }, {
+    },
+    {
         "regex":  "[_](.*)[_]",
         "result": "<em class='italic'>$1</em>",
         "_comment": "Italic: _word_"
-    }, {
+    },
+    {
         "regex":  "[~]{2}(.*)[~]{2}",
         "result": "<del class='strikethrough'>$1</del>",
         "_comment": "Strikethrough: ~~word~~"
-    }, {
+    },
+    {
         "regex":  "^[#]{6}(.*)\n",
         "result": "<h6 class='header6'>$1</h6>",
         "_comment": "H6: ######word"
-    }, {
+    },
+    {
         "regex":  "^[#]{5}(.*)\n",
         "result": "<h5 class='header5'>$1</h5>",
         "_comment": "H5: #####word"
-    }, {
+    },
+    {
         "regex":  "^[#]{4}(.*)\n",
         "result": "<h4 class='header4'>$1</h4>",
         "_comment": "H4: ####word"
-    }, {
+    },
+    {
         "regex":  "^[#]{3}(.*)\n",
         "result": "<h3 class='header3'>$1</h3>",
         "_comment": "H3: ###word"
-    }, {
+    },
+    {
         "regex":  "^[#]{2}(.*)\n",
         "result": "<h2 class='header2'>$1</h2>",
         "_comment": "H2: ##word"
-    }, {
+    },
+    {
         "regex":  "^[#]{1}(.*)\n",
         "result": "<h1 class='header1'>$1</h1>",
         "_comment": "H1: #word"
+    },
+    {
+        "regex":  "^(?![0-9]\\.\\ )(.*?)\n^[0-9]\\.\\ (.*)$\n^(?![0-9]\\.\\ )(.*?)",
+        "result": "$1\n<ol><li>$2</li></ol>\n$3",
+        "_comment": "Single ordered list"
+    },
+    {
+        "regex":  "^(?![0-9]\\.\\ )(.*?)\n^[0-9]\\.\\ (.*)",
+        "result": "$1\n<ol><li>$2</li>",
+        "_comment": "Begin of ordered list"
+    },
+    {
+        "regex":  "^[0-9]\\.\\ (.*)\n^(?![0-9]\\.\\ )(.*?)",
+        "result": "<li>$1</li></ol>\n$2",
+        "_comment": "End of ordered list"
+    },
+    {
+        "regex":  "^[0-9]\\.\\ (.*)\n^[0-9]\\.\\ (.*)\n^[0-9]\\.\\ (.*)",
+        "result": "$1\n<li>$2</li>\n$3",
+        "_comment": "Body ordered list"
+    },
+    {
+        "regex":  "^(?![⋅]{2}[0-9]\\.\\ )(.*)\n^[⋅]{2}[0-9]\\.\\ (.*)\n^(?![⋅]{2}[0-9]\\.\\ )(.*)",
+        "result": "$1\n<ol><li>$2</li></ol>\n$3",
+        "_comment": "Single ordered sublist"
+    },
+    {
+        "regex":  "^(?![⋅]{2}[0-9]\\.\\ )(.*)\n^[⋅]{2}[0-9]\\.\\ (.*)",
+        "result": "$1\n<ol><li>$2</li>",
+        "_comment": "Begin of ordered sublist"
+    },
+    {
+        "regex":  "^[⋅]{2}[0-9]\\.\\ (.*)\n^(?![⋅]{2}[0-9]\\.\\ )(.*)",
+        "result": "<li>$1</li></ol>\n$2",
+        "_comment": "End of ordered sublist"
+    },
+    {
+        "regex":  "^[⋅]{2}[0-9]\\.\\ (.*)\n^[⋅]{2}[0-9]\\.\\ (.*)\n^[⋅]{2}[0-9]\\.\\ (.*)",
+        "result": "$1\n<li>$2</li>\n$3",
+        "_comment": "Body ordered sublist"
+    },
+    {
+        "regex":  "^(?![⋅]{2}[*+-]\\ )(.*)\n^[⋅]{2}[*+-]\\ (.*)\n^(?![⋅]{2}[*+-]\\ )(.*)",
+        "result": "$1\n<ul><li>$2</li></ul>\n$3",
+        "_comment": "Single unordered sublist"
+    },
+    {
+        "regex":  "^(?![⋅]{2}[*+-]\\ )(.*)\n^[⋅]{2}[*+-]\\ (.*)",
+        "result": "$1\n<ul><li>$2</li>",
+        "_comment": "Begin of unordered sublist"
+    },
+    {
+        "regex":  "^[⋅]{2}[*+-]\\ (.*)\n^(?![⋅]{2}[*+-]\\ )(.*)",
+        "result": "<li>$1</li></ul>\n$2",
+        "_comment": "End of unordered sublist"
+    },
+    {
+        "regex":  "^[⋅]{2}[*+-]\\ (.*)\n^[⋅]{2}[*+-]\\ (.*)\n^[⋅]{2}[*+-]\\ (.*)",
+        "result": "$1\n<li>$2</li>\n$3",
+        "_comment": "Body unordered sublist"
+    },
+    {
+        "regex":  "^(?![*+-]\\ )(.*)\n^[*+-]\\ (.*)\n^(?![*+-]\\ )(.*)",
+        "result": "$1\n<ul><li>$2</li></ul>\n$3",
+        "_comment": "Single unordered list"
+    },
+    {
+        "regex":  "^(?![*+-]\\ )(.*)\n^[*+-]\\ (.*)",
+        "result": "$1\n<ul><li>$2</li>",
+        "_comment": "Begin of unordered list"
+    },
+    {
+        "regex":  "^[*+-]\\ (.*)\n^(?![*+-]\\ )(.*)",
+        "result": "<li>$1</li></ul>\n$2",
+        "_comment": "End of unordered list"
+    },
+    {
+        "regex":  "^[*+-]\\ (.*)",
+        "result": "<li>$1</li>",
+        "_comment": "Body unordered list"
+    },
+    {
+        "regex":  "</li>\n{2}<li>",
+        "result": ""
+    },
+    {
+        "regex":  "^\n|\r|\r\n$",
+        "result": ""
     }
 ]

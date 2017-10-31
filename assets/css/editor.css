@@ -21,7 +21,7 @@
 	white-space: pre-line;
 }
 
-.editor-input * { cursor: text; }
+.editor-input * { cursor: text; box-sizing: border-box;}
 
 ::-webkit-scrollbar {
     width: 12px;
@@ -117,15 +117,37 @@
 }
 
 .editor-input p {
+	display: block;
 	margin-bottom: 13px;
 }
 
 .editor-input ol {
 	display: block;
+	padding-left: 2em;
+	line-height: 0;
+	margin-top: 0;
+	margin-bottom: 16px;
 	list-style-type: decimal;
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	-webkit-padding-start: 40px;
 }
 
 .editor-input ol li{
+	display: list-item;
+	line-height: 1.5;
+	font-size: 16px;
+	word-wrap: break-word;
+}
+
+.editor-input ul {
+	display: block;
+	list-style-type: disc;
+}
+
+.editor-input ul li{
 	display: list-item;
 }
 

@@ -78,13 +78,10 @@ let generalFunctions = () => {
 let parseFile = (div, content) => {
     let rules = JSON.parse(fs.readFileSync(app.getAppPath() + '/assets/js/regex-formats.json').toString());
     let newcontent = content;
+    console.log(rules);
     for (var i = 0; i < rules.length; i++) {
         let rule = rules[i];
         newcontent = newcontent.replace(new RegExp(rule.regex, 'gim'), rule.result);
-        /*
-            Ni la linea de arriba, ni la de abajo, comienzan con numeros
-            (?!^[0-9]\. *$)\n^[0-9]\. (.*)$\n(?!^[0-9]\. *$)
-        */
     }
     div.innerHTML = newcontent
 }
@@ -100,21 +97,20 @@ let openFile = () => {
             current.newFile = false
             current.filePath = filePath[0]
             current.content = fs.readFileSync(filePath[0]).toString();
-            console.log(current.content);
-            parseFile(editorInput, current.content);
-
-            let recentFiles = storage.getRecentFiles();
-            let mustBeAdded = true;
-            console.log('Recent files', recentFiles);
-            for (var i = 0; i < recentFiles.length; i++) {
-                if (current.filePath == recentFiles[i].path) {
-                    mustBeAdded = false;
-                }
-            }
-
-            if (mustBeAdded) {
-                storage.addRecentFile(current.filePath)
-            }
+            console.log(parseFile(editorInput, current.content));
+            //
+            // let recentFiles = storage.getRecentFiles();
+            // let mustBeAdded = true;
+            // console.log('Recent files', recentFiles);
+            // for (var i = 0; i < recentFiles.length; i++) {
+            //     if (current.filePath == recentFiles[i].path) {
+            //         mustBeAdded = false;
+            //     }
+            // }
+            //
+            // if (mustBeAdded) {
+            //     storage.addRecentFile(current.filePath)
+            // }
         }
     })
 }
@@ -136,15 +132,15 @@ let openRecent = (path) => {
         current.mustSave = false
         current.content = fs.readFileSync(path).toString();
         console.log(current.content);
-        parseFile(editorInput, current.content);
+        editorInput.innerHTML = parseFile(editorInput, current.content);
     }
 }
 
 let reOpenFile = () => {
     if (current.file) {
         console.log('Reopening',current.filePath);
-        let content = fs.readFileSync(current.filePath).toString().split(/(\r\n|\n|\r)/gm).filter(Boolean)
-        editorInput.innerHTML = parseReturn(content);
+        // let content = fs.readFileSync(current.filePath).toString().split(/(\r\n|\n|\r)/gm).filter(Boolean)
+        parseFile(editorInput, current.content)
     }
 }
 
@@ -196,4 +192,4 @@ let appendRecentFiles = (items) => {
 
 }
 
-appendRecentFiles(storage.getRecentFiles())
+// appendRecentFiles(storage.getRecentFiles())

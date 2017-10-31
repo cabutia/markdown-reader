@@ -4,8 +4,8 @@ let dialog = remote.dialog
 let fs     = require('fs')
 let Mousetrap = require('mousetrap')
 let app = remote.require('electron').app
-let storage = require('json-storage')
-let storagePath = app.getAppPath() + '/storage'
+// let storage = require('json-storage')
+// let storagePath = app.getAppPath() + '/storage'
 
 // Window elements
 let closeButton = document.querySelector('#window-close')
@@ -38,4 +38,4 @@ let current = {
 }
 
 // Initializations
-storage.init()
+// storage.init()
